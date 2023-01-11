@@ -113,6 +113,7 @@ export default class Cart extends Component {
               </button>
 
               <button type="button" 
+              data-bs-dismiss="modal"
               onClick= {()=>{
                 this.props.checkOut()
               }}
