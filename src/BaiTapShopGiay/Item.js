@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
 export default class Item extends Component {
+
+  open =() => {
+    document.getElementById('detail').style.display="block";
+    return true;
+  }
+
   render() {
     const { image, name, price } = this.props.item;
     return (
@@ -11,10 +17,9 @@ export default class Item extends Component {
         <div className="d-flex">
           <button
             className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#details"
             onClick={() => {
               this.props.setSelectedItem(this.props.item);
+              this.open();
             }}
           >
             Chi tiết

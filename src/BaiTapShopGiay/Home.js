@@ -225,19 +225,38 @@ export default class Home extends Component {
 
   decreaseQuantity = (id) => {
     const cloneCart = [...this.state.cart];
-
     const foundItem = this.state.cart.find((cartItem) => {
       return cartItem.product.id === id;
     });
     if (foundItem) {
       if (foundItem.quantity <= 1) {
-        alert("Bạn có muốn xóa sản phẩm khỏi giỏ hàng?");
-        const index = cloneCart.findIndex((cartItem) => {
-          return cartItem.product.id === id;
-        });
-
-        if (index === -1) return;
-        cloneCart.splice(index, 1);
+        Swal.fire({
+          title: "CHÚ Ý !!!",
+          text: "Bạn có muốn xóa sản phẩm khỏi giỏ hàng?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes",
+        }).then ((result) => {
+          if (result.isConfirmed) {
+            const index = cloneCart.findIndex((cartItem) => {
+              return cartItem.product.id === id;
+            });
+            if (index === -1) return;
+            cloneCart.splice(index, 1);
+            this.setState(
+              {
+                cart: cloneCart,
+              },
+            );
+            Swal.fire(
+              'Đã xóa!',
+              'Sản phẩm đã được xóa',
+              'success'
+            )
+          }
+        })
       } else {
         foundItem.quantity -= 1;
       }
