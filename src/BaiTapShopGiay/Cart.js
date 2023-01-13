@@ -101,7 +101,7 @@ export default class Cart extends Component {
                   {this.renderCart()}
                 </tbody>
               </table>
-              <h2 > Tổng tiền: {this.totalPrice()+' $'}</h2>
+              <h2 style={{textAlign:"right"}}> Tổng tiền: {this.totalPrice()+' $'}</h2>
             </div>
             <div className="modal-footer">
               <button
